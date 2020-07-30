@@ -28,7 +28,8 @@ class Population(np.ndarray):
             return obj
 
     def copy(self, deep=False):
-        pop = Population(n_individuals=len(self), individual=self.individual)
+        # self.individual -> Individual()
+        pop = Population(n_individuals=len(self), individual=Individual())
         for i in range(len(self)):
             val = copy.deepcopy(self[i]) if deep else self[i]
             pop[i] = val
