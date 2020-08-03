@@ -8,7 +8,7 @@ class TimeBasedTermination(Termination):
 
     def __init__(self, max_time) -> None:
         super().__init__()
-        self.start = None
+        self.start = time.time()
         self.now = None
 
         if isinstance(max_time, str):
