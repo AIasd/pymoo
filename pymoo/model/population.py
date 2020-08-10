@@ -74,6 +74,9 @@ class Population(np.ndarray):
             is_iterable = hasattr(values, '__len__') and not isinstance(values, str)
 
             if is_iterable and len(values) != len(self):
+                print(key)
+                print(values)
+                print(len(values), len(self))
                 raise Exception("Population Set Attribute Error: Number of values and population size do not match!")
 
             for i in range(len(self)):

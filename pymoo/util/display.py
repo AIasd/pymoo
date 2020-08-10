@@ -154,7 +154,11 @@ class MultiObjectiveDisplay(Display):
         super()._do(problem, evaluator, algorithm)
 
         F, CV, feasible = algorithm.pop.get("F", "CV", "feasible")
+        # print('\n'*50, 'feasible 1', feasible, '\n'*50)
+        # print('\n'*50, 'feasible[:,0]', feasible[:, 0], '\n'*50)
         feasible = np.where(feasible[:, 0])[0]
+
+        # print('\n'*50, 'feasible 2', feasible, '\n'*50)
 
         if problem.n_constr > 0:
             self.output.append("cv (min)", CV.min())
