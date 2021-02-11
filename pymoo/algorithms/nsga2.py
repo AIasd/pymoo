@@ -54,8 +54,12 @@ def binary_tournament(pop, P, algorithm, **kwargs):
 
             # if rank or domination relation didn't make a decision compare by crowding
             if np.isnan(S[i]):
-                S[i] = compare(a, pop[a].get("crowding"), b, pop[b].get("crowding"),
+                # check for None
+                if pop[a].get("crowding") and pop[b].get("crowding"):
+                    S[i] = compare(a, pop[a].get("crowding"), b, pop[b].get("crowding"),
                                method='larger_is_better', return_random_if_equal=True)
+                else:
+                    S[i] = np.random.choice([a, b])
 
     return S[:, None].astype(np.int, copy=False)
 

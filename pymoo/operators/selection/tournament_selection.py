@@ -8,8 +8,8 @@ from pymoo.util.misc import random_permuations
 
 class TournamentSelection(Selection):
     """
-      The Tournament selection is used to simulated a tournament between individuals. The pressure balances
-      greedy the genetic algorithm will be.
+    The Tournament selection is used to simulated a tournament between individuals. The pressure balances
+    greedy the genetic algorithm will be.
     """
 
     def __init__(self, func_comp=None, pressure=2):
@@ -30,15 +30,21 @@ class TournamentSelection(Selection):
 
         self.f_comp = func_comp
         if self.f_comp is None:
-            raise Exception("Please provide the comparing function for the tournament selection!")
+            raise Exception(
+                "Please provide the comparing function for the tournament selection!"
+            )
 
     def _do(self, pop, n_select, n_parents=1, **kwargs):
         # number of random individuals needed
+        # print("\n" * 5)
+        # print("n_select, n_parents, self.pressure", n_select, n_parents, self.pressure)
+        # print("\n" * 5)
         n_random = n_select * n_parents * self.pressure
 
         # number of permutations needed
         n_perms = math.ceil(n_random / len(pop))
-
+        # print("len(n_perms), len(pop), n_random", n_perms, len(pop), n_random)
+        # print("\n" * 5)
         # get random permutations and reshape them
         P = random_permuations(n_perms, len(pop))[:n_random]
         P = np.reshape(P, (n_select * n_parents, self.pressure))
@@ -50,7 +56,7 @@ class TournamentSelection(Selection):
 
 
 def compare(a, a_val, b, b_val, method, return_random_if_equal=False):
-    if method == 'larger_is_better':
+    if method == "larger_is_better":
         if a_val > b_val:
             return a
         elif a_val < b_val:
@@ -60,7 +66,7 @@ def compare(a, a_val, b, b_val, method, return_random_if_equal=False):
                 return np.random.choice([a, b])
             else:
                 return None
-    elif method == 'smaller_is_better':
+    elif method == "smaller_is_better":
         if a_val < b_val:
             return a
         elif a_val > b_val:
