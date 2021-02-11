@@ -56,6 +56,8 @@ class TournamentSelection(Selection):
 
 
 def compare(a, a_val, b, b_val, method, return_random_if_equal=False):
+    if not a_val or not b_val:
+        return np.random.choice([a, b])
     if method == "larger_is_better":
         if a_val > b_val:
             return a
