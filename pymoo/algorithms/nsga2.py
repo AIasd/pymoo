@@ -56,10 +56,10 @@ def binary_tournament(pop, P, algorithm, **kwargs):
             if np.isnan(S[i]):
                 # check for None
                 if a and b and pop[a].get("crowding") and pop[b].get("crowding"):
-                    print(a)
-                    print(b)
-                    print(pop[a].get("crowding"))
-                    print(pop[b].get("crowding"))
+                    # print(a)
+                    # print(b)
+                    # print(pop[a].get("crowding"))
+                    # print(pop[b].get("crowding"))
                     S[i] = compare(a, pop[a].get("crowding"), b, pop[b].get("crowding"),
                                method='larger_is_better', return_random_if_equal=True)
                 else:
